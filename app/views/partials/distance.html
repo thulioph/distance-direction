@@ -1,0 +1,23 @@
+<aside class="panel panel-default">
+  <header class="panel-heading">Distance Matrix API</header>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Distância</th>
+        <th>Duração</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{data.distance.text}}</td>
+        <td>{{data.duration.text}}</td>
+      </tr>
+    </tbody>
+  </table>
+</aside>
+
+<div ng-show="error_message" class="alert alert-danger" role="alert">
+  {{error_message}} / {{status}}
+</div>
