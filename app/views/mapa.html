@@ -1,51 +1,75 @@
-<form ng-submit="search()" name="searchForm">
-  <fieldset class="form-group">
-    <label for="input-origin">Origem</label>
-    <input id="input-origin" type="text" name="origin" ng-model="place.origin" class="form-control"
-    autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
-  </fieldset>
+<div class="col-xs-12 col-sm-6 col-sm-offset-3 ng-scope">
+  <aside class="box">
+    <h3><b>Why</b></h3>
 
-  <fieldset class="form-group">
-    <label for="input-destination">Destino</label>
-    <input id="input-destination" type="text" name="destination" ng-model="place.destination" class="form-control" autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
-  </fieldset>
+    <p>Because the google maps api is fun <3</p>
+  </aside>
 
-  <fieldset class="radio">
-    <label>
-      <input type="radio" name="mode" ng-model="place.mode" value="driving">
-      Carro
-    </label>
+  <aside class="box">
+    <h3><b>Inspiration</b></h3>
 
-    <label>
-      <input type="radio" name="mode" ng-model="place.mode" value="bicycling">
-      Bicicleta
-    </label>
+    <p>Thank you for <a href="https://www.ifood.com.br/" target="_blank">ifood</a>, <a href="http://www.pedidosja.com.br/" target="_blank">pedidos já</a> and other companies that don't use google maps api to fill form and help user :)</p>
+  </aside>
 
-    <label>
-      <input type="radio" name="mode" ng-model="place.mode" value="walking">
-      Andando
-    </label>
-  </fieldset>
+  <aside class="box">
+    <h3><b>Usage</b></h3>
 
-  <fieldset class="checkbox">
-    <label>
-      <input type="checkbox" name="alternatives" ng-model="place.alternatives" value="false">
-      Rotas alternativas
-    </label>
-  </fieldset>
+    <p>
+      Fill <b>origin</b> and <b>destination</b> fields, choose <b>how you goes</b> and submit, below you see the routes with <b>travel time</b> and <b>distance</b>. Can you click in <b>show route</b> button for see into map.
+    </p>
+  </aside>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <form ng-submit="search()" name="searchForm">
+    <fieldset class="form-group">
+      <label for="input-origin">Origin</label>
+      <input id="input-origin" type="text" name="origin" ng-model="place.origin" class="form-control"
+      autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
+    </fieldset>
 
-  <br><br>
-</form>
+    <fieldset class="form-group">
+      <label for="input-destination">Destination</label>
+      <input id="input-destination" type="text" name="destination" ng-model="place.destination" class="form-control" autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
+    </fieldset>
 
-<hr style="margin-top: 0;">
+    <fieldset class="radio">
+      <label>
+        <input type="radio" name="mode" ng-model="place.mode" value="driving">
+        Driving
+      </label>
 
-<!-- distance -->
-<div ng-include src="'views/partials/distance.html'"></div>
+      <label>
+        <input type="radio" name="mode" ng-model="place.mode" value="bicycling">
+        Bicycling
+      </label>
 
-<!-- directions -->
-<div ng-include src="'views/partials/directions.html'"></div>
+      <label>
+        <input type="radio" name="mode" ng-model="place.mode" value="walking">
+        Walking
+      </label>
+    </fieldset>
 
-<!-- mapa -->
-<div id="map" class="map"></div>
+    <fieldset class="checkbox">
+      <label>
+        <input type="checkbox" name="alternatives" ng-model="place.alternatives" value="false">
+        Alternative routes
+      </label>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <br><br>
+  </form>
+
+  <br>
+
+  <hr style="margin-top: 0;">
+
+  <!-- distance -->
+  <div ng-include src="'views/partials/distance.html'"></div>
+
+  <!-- directions -->
+  <div ng-include src="'views/partials/directions.html'"></div>
+
+  <!-- map -->
+  <div id="map" class="map"></div>
+</div>
