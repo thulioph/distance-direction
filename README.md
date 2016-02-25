@@ -1,12 +1,30 @@
-# distance-direction
+# Distance & Directions
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+> Choose a fastest route easily.
 
-## Build & development
+### Demo
 
-Run `grunt` for building and `grunt serve` for preview.
+[Link](https://thulioph.github.io/distance-direction)
 
-## Testing
+### Why
 
-Running `grunt test` will run the unit tests with karma.
+Because i don't know where i am and i'm very hungry.
+
+### Inspiration
+
+Thank you for ifood, pedidos já and other companies that don't use google maps api to fill form and help user :)
+
+### Usage
+
+Fill **origin** and **destination** fields, choose **how you goes** and submit, below you see the routes with **travel time** and **distance**. Can you click in **show route** button for see into map.
+
+### APIs
+
+- [Google maps directions API](https://developers.google.com/maps/documentation/directions/)
+- [Google Maps Distance Matrix API](https://developers.google.com/maps/documentation/distance-matrix/)
+
+### Helpers
+
+- [Yeoman](http://yeoman.io/)
+- [UI Bootstrap](https://angular-ui.github.io/bootstrap/)
+- [Geolocation Web API](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorGeolocation)

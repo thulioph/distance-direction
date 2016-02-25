@@ -99,7 +99,8 @@ angular.module('distanceDirectionApp')
 
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
-        center: userPosition
+        center: userPosition,
+        scrollwheel: false
       });
 
       var marker = new google.maps.Marker({
