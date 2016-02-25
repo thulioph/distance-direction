@@ -1,17 +1,14 @@
 <form ng-submit="search()" name="searchForm">
-  <!-- <div ng-repeat="row in rows"> -->
-    <fieldset class="form-group">
-      <label for="input-origin">Origem</label>
-      <input id="input-origin" type="text" name="origin" ng-model="place.origin" class="form-control">
-    </fieldset>
+  <fieldset class="form-group">
+    <label for="input-origin">Origem</label>
+    <input id="input-origin" type="text" name="origin" ng-model="place.origin" class="form-control"
+    autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
+  </fieldset>
 
-    <fieldset class="form-group">
-      <label for="input-destination">Destino</label>
-      <input id="input-destination" type="text" name="destination" ng-model="place.destination" class="form-control">
-    </fieldset>
-  <!-- </div> -->
-
-  <!-- <button type="button" class="btn btn-primary btn-xs" ng-click="addRow()">+</button> -->
+  <fieldset class="form-group">
+    <label for="input-destination">Destino</label>
+    <input id="input-destination" type="text" name="destination" ng-model="place.destination" class="form-control" autocomplete="off" uib-typeahead="address for address in autoComplete($viewValue)">
+  </fieldset>
 
   <fieldset class="radio">
     <label>

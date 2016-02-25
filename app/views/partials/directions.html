@@ -16,13 +16,13 @@
         <td>{{rt.distance}}</td>
         <td>{{rt.duration}}</td>
         <td>
-          <button class="btn btn-primary btn-sm" ng-click="openMap($event)">mapa</button>
+          <button class="btn btn-primary btn-sm" ng-click="showRoute(rt)">mapa</button>
         </td>
       </tr>
     </tbody>
   </table>
 </aside>
 
-<div ng-show="error_message" class="alert alert-danger" role="alert">
+<div ng-show="error_message || status" class="alert alert-danger" role="alert">
   {{error_message}} / {{status}}
 </div>

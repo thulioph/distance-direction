@@ -8,9 +8,29 @@
  * Controller of the distanceDirectionApp
  */
 angular.module('distanceDirectionApp')
-  .controller('MapaCtrl', function ($scope, Distance, Directions) {
+  .controller('MapaCtrl', function ($scope, Distance, Directions, $http) {
 
     // ====
+    // Get user location
+    function getLocation() {
+      if (navigator.geolocation) {
+        console.log('Get userlocation...');
+        navigator.geolocation.getCurrentPosition(initMap, error);
+      } else {
+        window.alert('Geolocation is not supported.');
+      }
+    }
+
+    function error(err) {
+      window.alert('Error: ', err);
+    }
+
+    getLocation();
+    // ====
+
+
+    // ====
+    // Get distance and directions
     $scope.place = {};
     $scope.error_message = null;
 
@@ -46,34 +66,45 @@ angular.module('distanceDirectionApp')
       Directions.getDirections(directions, function(result) {
         console.warn(result);
 
-        var y = [];
+        if (result.status === 'OK') {
+          var y = [];
 
-        angular.forEach(result.routes, function(p) {
-          y.push({
-            summary: p.summary,
-            distance: p.legs[0].distance.text,
-            duration: p.legs[0].duration.text,
-            steps: p.legs[0].steps
+          angular.forEach(result.routes, function(p) {
+            y.push({
+              summary: p.summary,
+              distance: p.legs[0].distance.text,
+              duration: p.legs[0].duration.text,
+              steps: p.legs[0].steps
+            });
+            return y;
           });
-          return y;
-        });
 
-        $scope.routes = y;
+          $scope.routes = y;
+        } else {
+          $scope.error_message = result.error_message;
+          $scope.status = result.status;
+        }
       });
     };
     // ====
 
+
     // ====
+    // Initializes map and display routes
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
 
-    function initMap() {
+    function initMap(position) {
+      var userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
-        center: {
-          lat: -8.0869234,
-          lng: -34.8922305
-        }
+        center: userPosition
+      });
+
+      var marker = new google.maps.Marker({
+        map: map,
+        position: userPosition
       });
 
       directionsDisplay.setMap(map);
@@ -93,21 +124,40 @@ angular.module('distanceDirectionApp')
       });
     }
 
-    initMap();
-
-    $scope.openMap = function(rt) {
+    $scope.showRoute = function(rt) {
       console.log(rt);
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
     // ====
 
+
     // ====
+    // Adds more fields (pairs) of origin and destination
     $scope.rows = [];
 
     $scope.addRow = function() {
       $scope.rows.push({
         origin: '',
         destination: ''
+      });
+    };
+    // ====
+
+
+    // ====
+    $scope.autoComplete = function(address) {
+      return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          address: address,
+          sensor: false,
+          language: 'pt-BR'
+        }
+      }).then(function(response){
+        console.log(response);
+
+        return response.data.results.map(function(item){
+          return item.formatted_address;
+        });
       });
     };
     // ====
