@@ -6,14 +6,6 @@
 
 [Link](https://thulioph.github.io/distance-direction)
 
-### Why
-
-Because i don't know where i am and i'm very hungry.
-
-### Inspiration
-
-Thank you for ifood, pedidos já and other companies that don't use google maps api to fill form and help user :)
-
 ### Usage
 
 Fill **origin** and **destination** fields, choose **how you goes** and submit, below you see the routes with **travel time** and **distance**. Can you click in **show route** button for see into map.
