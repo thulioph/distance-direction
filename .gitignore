@@ -1,5 +1,9 @@
-/node_modules
-/dist
+/.git
 /.tmp
 /.sass-cache
 /bower_components
+.yo-rc.json
+.jshintrc
+.editorconfig
+.gitattributes
+.DS_Store
