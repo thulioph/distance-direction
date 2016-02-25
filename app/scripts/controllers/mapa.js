@@ -52,7 +52,8 @@ angular.module('distanceDirectionApp')
           y.push({
             summary: p.summary,
             distance: p.legs[0].distance.text,
-            duration: p.legs[0].duration.text
+            duration: p.legs[0].duration.text,
+            steps: p.legs[0].steps
           });
           return y;
         });
@@ -78,8 +79,6 @@ angular.module('distanceDirectionApp')
       directionsDisplay.setMap(map);
     }
 
-    initMap();
-
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       directionsService.route({
         origin: $scope.place.origin,
@@ -94,7 +93,10 @@ angular.module('distanceDirectionApp')
       });
     }
 
-    $scope.openMap = function(event) {
+    initMap();
+
+    $scope.openMap = function(rt) {
+      console.log(rt);
       calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
     // ====
